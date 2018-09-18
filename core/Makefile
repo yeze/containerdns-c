@@ -2,6 +2,10 @@ ifeq ($(RTE_SDK),)
 $(error "Please define RTE_SDK environment variable")
 endif
 
+DEPDIR = $(SRCDIR)/../deps
+
+INCLUDE += -I$(DEPDIR)/libjansson/src
+
 # Default target, can be overriden by command line or environment
 include $(RTE_SDK)/mk/rte.vars.mk
 
@@ -28,6 +32,7 @@ util.h \
 view.h \
 zone.h 
 
+CFLAGS += $(INCLUDE)
 
 CFLAGS += $(WERROR_FLAGS) -g
 
