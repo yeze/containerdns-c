@@ -259,7 +259,7 @@ func kdnsHttpClientInit(dns KdnsServerConf) *http.Client {
 
 func findZoneNameFromDomain(domain string) string {
 	for _, zone := range dnsZones {
-		if strings.HasSuffix(domain, zone) {
+		if strings.Compare(domain, zone) == 0 || strings.HasSuffix(domain, "." + zone) {
 			return zone
 		}
 	}
